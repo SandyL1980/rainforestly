@@ -1,7 +1,38 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
 
-<% @products.each do |product| %>
-  <li><h5><%= product[:title] %> (<%= product.formatted_price %>)</h5>
-  <%= link_to "#{product.name}", product %></li>
-<% end %>
+<div class="uk-container uk-width-1-1 uk-container-center uk-margin-top">
+  <h1>Rainforest<strong><em>ly</em></strong></h1>
+  <nav class="uk-navbar uk-margin-large-bottom">
+    <a class="uk-navbar-brand uk-hidden-small" href="/">Products Homepage</a>
+    <ul class="uk-navbar-nav uk-navbar-flip uk-hidden-small">
+        <li>
+            <a href="/">About</a>
+        </li>
+        <li>
+            <a href="">Signup | Login</a>
+        </li>
+        <li>
+            <a href="/">Contact</a>
+        </li>
+    </ul>
+    <a href="/" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
+    <div class="uk-navbar-brand uk-navbar-center uk-visible-small">Brand</div>
+  </nav>
+</div>
+<div class="uk-grid uk-width-1-1 uk-container uk-container-center">
+  <div class="uk-width-1-1">
+    <ul class="uk-grid uk-panel-box" data-uk-grid-margin>
+      <% @products.each do |product| %>
+        <li class="uk-width-medium-1-4 uk-panel">
+          <h3><%= product[:name] %></h3>
+          <img src="http://placehold.it/450x450" alt="" class="uk-thumbnail" >
+          <hr>
+          <h5> (<%= product.formatted_price %>)</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum unde nemo modi et animi. Iusto nemo sint laborum cum, eos rerum ducimus quos fugiat quibusdam eum sed quas doloremque, dolorum.</p>
+          <%= link_to "#{product.name}", product %></li>
+          </li>
+        <li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
