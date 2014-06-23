@@ -8,29 +8,21 @@
 
 # http://placehold.it/450x450
 
-arr = []
+products = []
 
-5.times do |product|
-  name =
-  description =
-  price =
-  photo_url =
-  new_product = [name, description, price, photo_url]
-  arr.push(new_product)
+30.times do |product|
+  first, last = ('a'..'z').to_a.shuffle[0..3].join.capitalize, ('a'..'z').to_a.shuffle[0..4].join.capitalize
+  description = "Lorem ipsum dolor sit amet, consectetur adipisicing."
+  price = rand(1000..20000)
+  lorempixel = %w(technics city business cats)
+  photo_url = "http://lorempixel.com/450/450/" + lorempixel[(rand(0..3))].to_s + "/" + rand(1..9).to_s + "/"
+  new_product = [first + " " + last, description, price, photo_url]
+  products.push(new_product)
 end
 
-add_products = [
-  ["Photo 1", "Artist", "http://lorempixel.com/700/450/nature/1/"],
-  ["Photo 2", "Artist", "http://lorempixel.com/700/450/nature/2/"],
-  ["Photo 3", "Artist", "http://lorempixel.com/700/450/nature/3/"],
-  ["Photo 4", "Artist", "http://lorempixel.com/700/450/nature/4/"],
-  ["Photo 5", "Artist", "http://lorempixel.com/700/450/nature/5/"],
-  ["Photo 6", "Artist", "http://lorempixel.com/700/450/nature/6/"],
-  ["Photo 7", "Artist", "http://lorempixel.com/700/450/nature/7/"],
-  ["Photo 8", "Artist", "http://lorempixel.com/700/450/nature/8/"],
-  ["Photo 9", "Artist", "http://lorempixel.com/700/450/nature/9/"]
-]
-
-add_photos.each do |title, artist, url|
-  Picture.create( :title => title, :artist => artist, :url => url )
+products.each do |name, description, price_in_cents, photo_url|
+  Product.create( :name => name,
+    :description => description,
+    :price_in_cents => price_in_cents,
+    :photo_url => photo_url )
 end

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  # leaving this in preventing users from seeing products
   # before_filter :ensure_logged_in, :only => [:show]
 
   def index
@@ -6,8 +7,14 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-
+    begin
+      @product = Product.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to "/"
+    rescue ActiveRecord::CatchAll
+      #Only comes in here if nothing else catches the error
+      redirect_to "/"
+    end
     if current_user
       @review = @product.reviews.build
     end
